@@ -6,6 +6,8 @@ import Header from './Header';
 import Dummy from './Dummy';
 import SolutionLetters from './SolutionLetters';
 import ErrorLetters from './ErrorLetters';
+import Form from './Form';
+
 
 function App() {
   const [lastLetter, setLastLetter] = useState('');
@@ -24,9 +26,7 @@ function App() {
       .then((dataFromApi) => setWord(dataFromApi.body.Word));
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
+  
 
   const handleChangeLetter = (event) => {
     const regex = /^[a-zA-ZáäéëíïóöúüÁÄÉËÍÏÓÖÚÜñÑ]?$/;
@@ -126,22 +126,8 @@ function App() {
           <SolutionLetters fun={renderSolutionLetters()} />
 
           <ErrorLetters fun={renderErrorLettters()} />
-
-          <form className="form" onSubmit={handleSubmit}>
-            <label className="title" htmlFor="last-letter">
-              Escribe una letra:
-            </label>
-            <input
-              autoComplete="off"
-              className="form__input"
-              maxLength="1"
-              type="text"
-              name="last-letter"
-              id="last-letter"
-              onChange={handleChangeLetter}
-              value={lastLetter}
-            />
-          </form>
+          <Form lastLetter={lastLetter} handleChangeLetter={handleChangeLetter} />
+          
         </section>
         <div className="end__container">
           <Dummy fun={calculateErorNumber()} />
