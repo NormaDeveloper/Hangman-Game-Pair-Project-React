@@ -32,8 +32,8 @@ function App() {
     const regex = /^[a-zA-ZáäéëíïóöúüÁÄÉËÍÏÓÖÚÜñÑ]?$/;
     if (event.target.value.match(regex)) {
       setLastLetter(event.target.value);
-      if (lastLetter !== '') {
-        const newLetter = [...userLetter, lastLetter];
+      if (event.target.value !== '') {
+        const newLetter = [...userLetter, event.target.value];
         setUserLetters(newLetter);
       }
     }
